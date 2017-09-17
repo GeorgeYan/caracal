@@ -12,11 +12,13 @@ module Caracal
 
         const_set(:DEFAULT_HEADER_ALIGN, :center)
         const_set(:DEFAULT_HEADER_SHOW,  false  )
+        const_set(:DEFAULT_HEADER_HORIZONTAL_LINE,  false  )
 
         attr_reader :header_align
         attr_reader :header_text
         attr_reader :header_show
         attr_reader :header_style
+        attr_reader :horizontal_line
 
 
         def initialize(options={}, &block)
@@ -24,6 +26,7 @@ module Caracal
           @header_text  = nil
           @header_show  = DEFAULT_HEADER_SHOW
           @header_style  = nil
+          @horizontal_line  = DEFAULT_HEADER_HORIZONTAL_LINE
 
           super options,&block
         end

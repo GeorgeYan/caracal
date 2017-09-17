@@ -19,6 +19,7 @@ module Caracal
           xml['w'].ftr root_options do
             xml['w'].p paragraph_options do
               xml['w'].pPr do
+                xml['w'].pStyle({ 'w:val' => document.page_number_style })  unless document.page_number_style.nil?
                 xml['w'].contextualSpacing({ 'w:val' => '0' })
                 xml['w'].jc({ 'w:val' => "#{ document.page_number_align }" })
               end

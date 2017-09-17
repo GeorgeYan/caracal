@@ -22,12 +22,14 @@ module Caracal
         attr_reader :page_number_align
         attr_reader :page_number_label
         attr_reader :page_number_show
+        attr_reader :page_number_style
 
         # initialization
         def initialize(options={}, &block)
           @page_number_align = DEFAULT_PAGE_NUMBER_ALIGN
           @page_number_label = nil
           @page_number_show  = DEFAULT_PAGE_NUMBER_SHOW
+          @page_number_style  = nil
 
           super options, &block
         end
@@ -51,6 +53,10 @@ module Caracal
           @page_number_show = !!value
         end
 
+        def style(value)
+          @page_number_style = value.to_s.strip
+        end
+
 
         #=============== VALIDATION ===========================
 
@@ -65,7 +71,7 @@ module Caracal
         private
 
         def option_keys
-          [:align, :label, :show]
+          [:align, :label, :show, :style]
         end
 
       end
