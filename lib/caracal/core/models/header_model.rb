@@ -18,7 +18,7 @@ module Caracal
         attr_reader :header_text
         attr_reader :header_show
         attr_reader :header_style
-        attr_reader :horizontal_line
+        attr_reader :header_horizontal_line
 
 
         def initialize(options={}, &block)
@@ -26,7 +26,7 @@ module Caracal
           @header_text  = nil
           @header_show  = DEFAULT_HEADER_SHOW
           @header_style  = nil
-          @horizontal_line  = DEFAULT_HEADER_HORIZONTAL_LINE
+          @header_horizontal_line  = DEFAULT_HEADER_HORIZONTAL_LINE
 
           super options,&block
         end
