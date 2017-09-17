@@ -16,12 +16,14 @@ module Caracal
         attr_reader :header_align
         attr_reader :header_text
         attr_reader :header_show
+        attr_reader :header_style
 
 
         def initialize(options={}, &block)
-          @header_align = DEFAULT_HEADER_ALIGN 
+          @header_align = DEFAULT_HEADER_ALIGN
           @header_text  = nil
           @header_show  = DEFAULT_HEADER_SHOW
+          @header_style  = nil
 
           super options,&block
         end
@@ -29,7 +31,7 @@ module Caracal
         def align(value)
           @header_align = value.to_s.to_sym
         end
-        
+
 
         def text(value)
           @header_text = value.to_s.strip
@@ -39,6 +41,13 @@ module Caracal
           @header_show = !!value
         end
 
+        def style(value)
+          @header_style = value.to_s.strip
+        end
+
+        def horizontal_line(value)
+          @header_horizontal_line = !!value
+        end
 
 
 
@@ -50,7 +59,7 @@ module Caracal
         private
 
         def option_keys
-          [:align, :label, :show]
+          [:align, :label, :show, :style, :horizontal_line]
         end
       end
     end

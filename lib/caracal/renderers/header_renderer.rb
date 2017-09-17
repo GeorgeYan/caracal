@@ -13,14 +13,20 @@ module Caracal
 
       # This method produces the xml required for the `word/settings.xml`
       # sub-document.
-      
+
       def to_xml
         builder = ::Nokogiri::XML::Builder.with(declaration_xml) do |xml|
           xml['w'].ftr root_options do
             xml['w'].p paragraph_options do
               xml['w'].pPr do
+                xml['w'].pStyle({ 'w:val' => document.header_style })  unless document.header_style.nil?
                 xml['w'].contextualSpacing({ 'w:val' => '0' })
                 xml['w'].jc({ 'w:val' => "#{ document.header_align }" })
+                if document.header_horizontal_line
+                  xml['w'].pBdr do
+                    xml['w'].bottom({ 'w:val' => "single", 'w:sz' => "6", 'w:space' => "1", 'w:color' => "auto" })
+                  end
+                end
               end
               unless document.header_text.nil?
                 xml['w'].r run_options do
@@ -72,4 +78,3 @@ module Caracal
     end
   end
 end
-
