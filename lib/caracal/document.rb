@@ -19,6 +19,7 @@ require 'caracal/core/rules'
 require 'caracal/core/styles'
 require 'caracal/core/tables'
 require 'caracal/core/text'
+require 'caracal/core/num_titles'
 
 require 'caracal/renderers/app_renderer'
 require 'caracal/renderers/content_types_renderer'
@@ -63,6 +64,7 @@ module Caracal
     include Caracal::Core::Rules
     include Caracal::Core::Tables
     include Caracal::Core::Text
+    include Caracal::Core::NumTitles
 
 
     #-------------------------------------------------------------

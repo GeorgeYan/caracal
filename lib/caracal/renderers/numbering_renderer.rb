@@ -19,7 +19,57 @@ module Caracal
       def to_xml
         builder = ::Nokogiri::XML::Builder.with(declaration_xml) do |xml|
           xml['w'].numbering root_options do
-            
+            # hard code work for special project (my project)
+            xml['w'].abstractNum({ 'w:abstractNumId' => "10001" }) do
+              xml['w'].nsid({ 'w:val' => '099A081C' })
+              xml['w'].multiLevelType({ 'w:val' => 'hybridMultilevel' })
+              xml['w'].lvl({ 'w:ilvl' => '0' }) do
+                xml['w'].start({ 'w:val' => '1' })
+                xml['w'].numFmt({ 'w:val' => 'decimal' })
+                #xml['w'].lvlRestart({ 'w:val' => s.style_restart })
+                xml['w'].pStyle({ 'w:val' => 'Heading1' })
+                xml['w'].lvlText({ 'w:val' => '%1.' })
+                xml['w'].lvlJc({ 'w:val' => 'start' })
+                xml['w'].pPr do
+                  xml['w'].ind({ 'w:start' => '0', 'w:firstLine' => '0'})
+                end
+                xml['w'].rPr do
+                  xml['w'].u({ 'w:val' => 'none' })
+                end
+              end
+              xml['w'].lvl({ 'w:ilvl' => '1' }) do
+                xml['w'].start({ 'w:val' => '1' })
+                xml['w'].numFmt({ 'w:val' => 'decimal' })
+                #xml['w'].lvlRestart({ 'w:val' => s.style_restart })
+                xml['w'].pStyle({ 'w:val' => 'Heading2' })
+                xml['w'].lvlText({ 'w:val' => '%1.%2.' })
+                xml['w'].lvlJc({ 'w:val' => 'start' })
+                xml['w'].pPr do
+                  xml['w'].ind({ 'w:start' => '0', 'w:firstLine' => '0'})
+                end
+                xml['w'].rPr do
+                  xml['w'].u({ 'w:val' => 'none' })
+                end
+              end
+              xml['w'].lvl({ 'w:ilvl' => '2' }) do
+                xml['w'].start({ 'w:val' => '1' })
+                xml['w'].numFmt({ 'w:val' => 'decimal' })
+                #xml['w'].lvlRestart({ 'w:val' => s.style_restart })
+                xml['w'].pStyle({ 'w:val' => 'Heading3' })
+                xml['w'].lvlText({ 'w:val' => '%1.%2.%3.' })
+                xml['w'].lvlJc({ 'w:val' => 'start' })
+                xml['w'].pPr do
+                  xml['w'].ind({ 'w:start' => '0', 'w:firstLine' => '0'})
+                end
+                xml['w'].rPr do
+                  xml['w'].u({ 'w:val' => 'none' })
+                end
+              end
+            end
+            xml['w'].num({ 'w:numId' => "10000" }) do
+              xml['w'].abstractNumId({ 'w:val' => "10001" })
+            end
+
             # add abstract definitions
             document.toplevel_lists.each_with_index do |model, i|
               xml['w'].abstractNum({ 'w:abstractNumId' => i + 1 }) do

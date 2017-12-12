@@ -36,7 +36,7 @@ module Caracal
                     xml['w'].footerReference({ 'r:id' => rel.formatted_id, 'w:type' => 'default' })
                   end
                 end
-                if document.header_show 
+                if document.header_show
                   if rel = document.find_relationship('header1.xml')
                     xml['w'].headerReference({ 'r:id' => rel.formatted_id, 'w:type' => 'default' })
                   end
@@ -240,6 +240,26 @@ module Caracal
           model.runs.each do |run|
             method = render_method_for_model(run)
             send(method, xml, run)
+          end
+        end
+      end
+
+      def render_numtitle(xml, model)
+        xml['w'].p paragraph_options do
+          xml['w'].pPr do
+            xml['w'].numPr do
+              xml['w'].ilvl({ 'w:val' => model.num_title_ilvl })
+              xml['w'].numId({ 'w:val' => model.num_title_num_id })
+            end
+            xml['w'].rPr do
+              xml['w'].u({ 'w:val' => 'none' })
+            end
+            xml['w'].pStyle({ 'w:val' => model.num_title_pstyle })
+          end
+          xml['w'].r do
+            xml['w'].t do
+              xml.text model.num_title_text
+            end
           end
         end
       end
