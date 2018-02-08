@@ -65,6 +65,20 @@ module Caracal
                   xml['w'].u({ 'w:val' => 'none' })
                 end
               end
+              xml['w'].lvl({ 'w:ilvl' => '3' }) do
+                xml['w'].start({ 'w:val' => '1' })
+                xml['w'].numFmt({ 'w:val' => 'decimal' })
+                #xml['w'].lvlRestart({ 'w:val' => s.style_restart })
+                xml['w'].pStyle({ 'w:val' => 'Heading4' })
+                xml['w'].lvlText({ 'w:val' => '%1.%2.%3.%4.' })
+                xml['w'].lvlJc({ 'w:val' => 'start' })
+                xml['w'].pPr do
+                  xml['w'].ind({ 'w:start' => '0', 'w:firstLine' => '0'})
+                end
+                xml['w'].rPr do
+                  xml['w'].u({ 'w:val' => 'none' })
+                end
+              end
             end
             xml['w'].num({ 'w:numId' => "10000" }) do
               xml['w'].abstractNumId({ 'w:val' => "10001" })
